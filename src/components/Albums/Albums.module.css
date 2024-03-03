@@ -6,3 +6,11 @@
   flex-direction: column;
   color: whitesmoke;
 }
+
+.albumContainer {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  /* border: 2px solid blue; */
+}
