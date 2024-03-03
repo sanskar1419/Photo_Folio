@@ -1,0 +1,14 @@
+.headingRight {
+  background-color: black;
+  padding: 5px 8px;
+  border-radius: 10px;
+}
+
+.logo {
+  width: auto;
+  height: 45px;
+  border-radius: 2.5rem;
+  margin-right: 0.8rem;
+  max-height: 6rem;
+  max-width: 18rem;
+}
