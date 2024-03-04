@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseInit";
-import { collection, onSnapshot, addDoc } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  addDoc,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 
-// Complete the following hook
-const useFetch = (url) => {
+const useFetch = () => {
   const [loading, setLoading] = useState(false);
   const [albums, setAlbums] = useState([]);
   const [showAlbumForm, setShowAlbumForm] = useState(false);
@@ -22,6 +27,18 @@ const useFetch = (url) => {
     });
   };
 
+  const settingAlbum = (id) => {
+    // console.log(id);
+    setOpenAlbum({
+      albumId: id,
+      open: true,
+    });
+  };
+
+  const goBackHome = () => {
+    setOpenAlbum({ albumId: "", open: false });
+  };
+
   useEffect(() => {
     setLoading(true);
     try {
@@ -33,7 +50,7 @@ const useFetch = (url) => {
             ...doc.data(),
           };
         });
-        console.log(albums);
+        // console.log(albums);
         setAlbums(albums);
       });
     } catch (error) {
@@ -49,6 +66,8 @@ const useFetch = (url) => {
     openAlbum,
     toggleAlbumForm,
     onAlbumFormSubmit,
+    settingAlbum,
+    goBackHome,
   };
 };
 // export the useFetch hook as a default export

@@ -1,11 +1,15 @@
 import styles from "./Album.module.css";
 
 function Album(props) {
-  const { album } = props;
+  const { album, settingAlbum } = props;
+  // console.log(album);
   return (
     <>
       {/* main container  */}
-      <div className={styles.cardContainer}>
+      <div
+        className={styles.cardContainer}
+        onClick={() => settingAlbum(album.id)}
+      >
         {/* album logo */}
         <div className={styles.cardImage}></div>
 
