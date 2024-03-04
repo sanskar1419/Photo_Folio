@@ -3,8 +3,7 @@ import styles from "./Images.module.css";
 import { db } from "../../firebaseInit";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
+import ImageForm from "../NewImageForm/NewImageForm";
 
 function Images(props) {
   const [album, setAlbum] = useState({
@@ -15,8 +14,6 @@ function Images(props) {
   });
   const [show, setShow] = useState(false);
   const { openAlbum, goBackHome } = props;
-  const nameRef = useRef();
-  const urlRef = useRef();
 
   //   console.log(album);
 
@@ -29,9 +26,7 @@ function Images(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = async () => {
-    const name = nameRef.current.value;
-    const url = urlRef.current.value;
+  const handleSubmit = async (name, url) => {
     const image = {
       name,
       url,
@@ -58,43 +53,11 @@ function Images(props) {
         </Button>
       </div>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add an Image</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>File Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Type Name here.."
-                ref={nameRef}
-                autoFocus
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>File URL</Form.Label>
-              <Form.Control
-                type="url"
-                placeholder="Type URL here.."
-                ref={urlRef}
-                autoFocus
-                required
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="success" onClick={handleSubmit}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ImageForm
+        handleClose={handleClose}
+        handleSubmit={handleSubmit}
+        show={show}
+      />
 
       {album.images.length <= 0 ? (
         <h1>No Images the album {album.name}</h1>
