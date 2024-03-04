@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseInit";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, addDoc } from "firebase/firestore";
 
 // Complete the following hook
 const useFetch = (url) => {
@@ -8,6 +8,19 @@ const useFetch = (url) => {
   const [albums, setAlbums] = useState([]);
   const [showAlbumForm, setShowAlbumForm] = useState(false);
   const [openAlbum, setOpenAlbum] = useState({ albumId: "", open: false });
+
+  const toggleAlbumForm = () => {
+    setShowAlbumForm(!showAlbumForm);
+  };
+
+  const onAlbumFormSubmit = async (data) => {
+    // console.log(data);
+    await addDoc(collection(db, "albums"), {
+      name: data,
+      images: [],
+      createdOn: new Date(),
+    });
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -29,7 +42,14 @@ const useFetch = (url) => {
     }
   }, []);
 
-  return { loading, albums, showAlbumForm, openAlbum };
+  return {
+    loading,
+    albums,
+    showAlbumForm,
+    openAlbum,
+    toggleAlbumForm,
+    onAlbumFormSubmit,
+  };
 };
 // export the useFetch hook as a default export
 
