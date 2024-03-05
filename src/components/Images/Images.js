@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./Images.module.css";
 import { db } from "../../firebaseInit";
 import { toast } from "react-hot-toast";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 import {
   arrayRemove,
   arrayUnion,
@@ -27,6 +29,8 @@ function Images(props) {
   const [updateValue, setUpdateValue] = useState({ name: "", url: "" });
   const [viewImages, setViewImage] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   //   console.log(album);
 
@@ -35,6 +39,10 @@ function Images(props) {
       setAlbum({ id: doc.id, ...doc.data() });
     });
   }, []);
+
+  const toggleSearch = () => {
+    setShowSearch(!showSearch);
+  };
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -120,15 +128,42 @@ function Images(props) {
           />
         ) : null}
         <div className={styles.backAndNewImageContainer}>
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/8022/8022662.png"
-            alt="back-button"
-            className={styles.btnBack}
-            onClick={goBackHome}
-          />
-          <Button variant="outline-primary" onClick={handleShow}>
-            Add Image
-          </Button>
+          <div className={styles.itmesContainer}>
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/8022/8022662.png"
+              alt="back-button"
+              className={styles.btnBack}
+              onClick={goBackHome}
+            />
+            <img
+              src={
+                showSearch
+                  ? "https://cdn-icons-png.flaticon.com/128/391/391247.png"
+                  : "https://cdn-icons-png.flaticon.com/128/954/954591.png"
+              }
+              alt="search"
+              className={styles.searchBtn}
+              onClick={toggleSearch}
+            />
+            {showSearch ? (
+              <Form>
+                <InputGroup>
+                  <Form.Control
+                    placeholder="Search............"
+                    aria-label="Recipient's username with two button addons"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    required
+                  />
+                </InputGroup>
+              </Form>
+            ) : null}
+          </div>
+          <div>
+            <Button variant="outline-primary" onClick={handleShow}>
+              Add Image
+            </Button>
+          </div>
         </div>
 
         <ImageForm
@@ -145,16 +180,20 @@ function Images(props) {
           <>
             <h1>Lists of all images in {album.name}</h1>
             <div className={styles.imagesContainer}>
-              {album.images.map((image, index) => (
-                <Image
-                  key={index}
-                  image={image}
-                  handleDelete={handleDelete}
-                  index={index}
-                  handelEdit={handelEdit}
-                  showViewImage={showViewImage}
-                />
-              ))}
+              {album.images
+                .filter((image) =>
+                  image.name.toLocaleLowerCase().includes(search)
+                )
+                .map((image, index) => (
+                  <Image
+                    key={index}
+                    image={image}
+                    handleDelete={handleDelete}
+                    index={index}
+                    handelEdit={handelEdit}
+                    showViewImage={showViewImage}
+                  />
+                ))}
             </div>
           </>
         )}
