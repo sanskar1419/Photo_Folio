@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseInit";
+import { toast } from "react-hot-toast";
 import {
   collection,
   onSnapshot,
@@ -25,6 +26,7 @@ const useFetch = () => {
       images: [],
       createdOn: new Date(),
     });
+    toast.success("Album Created Successfully");
   };
 
   const settingAlbum = (id) => {

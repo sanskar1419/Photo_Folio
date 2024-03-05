@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Images.module.css";
 import { db } from "../../firebaseInit";
+import { toast } from "react-hot-toast";
 import {
   arrayRemove,
   arrayUnion,
@@ -71,6 +72,7 @@ function Images(props) {
       await updateDoc(albumRef, {
         images: [image, ...album.images],
       });
+      toast.success("Image Added Successfully");
     } else {
       await updateDoc(albumRef, {
         images: arrayRemove(updateValue),
@@ -78,6 +80,7 @@ function Images(props) {
       await updateDoc(albumRef, {
         images: arrayUnion(image),
       });
+      toast.success("Image Updated Successfully");
       clearUpdate();
     }
     handleClose();
@@ -88,6 +91,7 @@ function Images(props) {
     await updateDoc(albumRef, {
       images: arrayRemove(image),
     });
+    toast.success("Image Deleted Successfully");
   };
 
   const clearUpdate = () => {

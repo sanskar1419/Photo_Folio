@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import Album from "../Album/Album";
 import NewAlbumForm from "../NewAlbumForm/NewAlbumForm";
 import Images from "../Images/Images";
+import Spinner from "react-spinner-material";
 
 function Albums() {
   const {
@@ -41,6 +42,11 @@ function Albums() {
       ) : (
         <Images openAlbum={openAlbum} goBackHome={goBackHome} />
       )}
+      {loading ? (
+        <div>
+          <Spinner radius={120} color={"#333"} stroke={2} visible={true} />
+        </div>
+      ) : null}
     </>
   );
 }
