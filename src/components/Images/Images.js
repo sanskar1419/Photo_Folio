@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Images.module.css";
 import { db } from "../../firebaseInit";
 import { toast } from "react-hot-toast";
@@ -35,7 +35,7 @@ function Images(props) {
   //   console.log(album);
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "albums", openAlbum.albumId), (doc) => {
+    onSnapshot(doc(db, "albums", openAlbum.albumId), (doc) => {
       setAlbum({ id: doc.id, ...doc.data() });
     });
   }, []);

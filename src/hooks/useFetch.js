@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseInit";
 import { toast } from "react-hot-toast";
-import {
-  collection,
-  onSnapshot,
-  addDoc,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { collection, onSnapshot, addDoc } from "firebase/firestore";
 
 const useFetch = () => {
   const [loading, setLoading] = useState(false);
@@ -45,7 +39,7 @@ const useFetch = () => {
     setLoading(true);
     try {
       // Getting Real-Time Update. OnSnapshot is acting like a listener
-      const unSub = onSnapshot(collection(db, "albums"), (snapShot) => {
+      onSnapshot(collection(db, "albums"), (snapShot) => {
         const albums = snapShot.docs.map((doc) => {
           return {
             id: doc.id,

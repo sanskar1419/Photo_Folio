@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styles from "./Image.module.css";
 
 function Image(props) {
@@ -45,7 +45,7 @@ function Image(props) {
         </div>
         {/* album logo */}
         <div className={styles.cardImage}>
-          <img src={image.url} alt="Image" />
+          <img src={image.url} alt="life" />
         </div>
 
         {/* album name*/}

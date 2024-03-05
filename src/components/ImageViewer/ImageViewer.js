@@ -25,7 +25,7 @@ function ImagesViewer(props) {
           onClick={disableViewImage}
         />
         <div className={styles.imageContainer}>
-          <img src={image.url} alt="image" />
+          <img src={image.url} alt="life" />
         </div>
       </div>
     </>
