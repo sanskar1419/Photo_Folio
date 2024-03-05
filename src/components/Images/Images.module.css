@@ -26,3 +26,13 @@
 .btnBack:active {
   transform: scale(1.3);
 }
+
+.imagesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  /* flex-direction: column; */
+  color: whitesmoke;
+  flex-wrap: wrap;
+}

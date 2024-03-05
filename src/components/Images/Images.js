@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Images.module.css";
 import { db } from "../../firebaseInit";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import Button from "react-bootstrap/Button";
 import ImageForm from "../NewImageForm/NewImageForm";
+import Image from "../Image/Image";
 
 function Images(props) {
   const [album, setAlbum] = useState({
@@ -14,6 +21,8 @@ function Images(props) {
   });
   const [show, setShow] = useState(false);
   const { openAlbum, goBackHome } = props;
+  const [updateAlbum, setUpdateAlbum] = useState(false);
+  const [updateValue, setUpdateValue] = useState({ name: "", url: "" });
 
   //   console.log(album);
 
@@ -32,11 +41,45 @@ function Images(props) {
       url,
     };
 
+    console.log(image);
+    console.log(updateValue);
+
+    const albumRef = doc(db, "albums", album.id);
+    if (!updateAlbum) {
+      await updateDoc(albumRef, {
+        images: [image, ...album.images],
+      });
+    } else {
+      await updateDoc(albumRef, {
+        images: arrayRemove(updateValue),
+      });
+      await updateDoc(albumRef, {
+        images: arrayUnion(image),
+      });
+      clearUpdate();
+    }
+    handleClose();
+  };
+
+  const handleDelete = async (image, index) => {
     const albumRef = doc(db, "albums", album.id);
     await updateDoc(albumRef, {
-      images: [image, ...album.images],
+      images: arrayRemove(image),
     });
-    handleClose();
+  };
+
+  const clearUpdate = () => {
+    setUpdateAlbum(false);
+    setUpdateValue({ name: "", url: "" });
+  };
+
+  const handelEdit = (image, index) => {
+    // console.log("Edit is clicked");
+    setUpdateAlbum(true);
+    setUpdateValue({ name: image.name, url: image.url });
+    // console.log(updateValue);
+    handleShow();
+    // console.log(nameRef.current);
   };
 
   return (
@@ -57,6 +100,8 @@ function Images(props) {
         handleClose={handleClose}
         handleSubmit={handleSubmit}
         show={show}
+        updateAlbum={updateAlbum}
+        updateValue={updateValue}
       />
 
       {album.images.length <= 0 ? (
@@ -64,6 +109,17 @@ function Images(props) {
       ) : (
         <>
           <h1>Lists of all images in {album.name}</h1>
+          <div className={styles.imagesContainer}>
+            {album.images.map((image, index) => (
+              <Image
+                key={index}
+                image={image}
+                handleDelete={handleDelete}
+                index={index}
+                handelEdit={handelEdit}
+              />
+            ))}
+          </div>
         </>
       )}
     </div>
