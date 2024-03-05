@@ -11,6 +11,7 @@ import {
 import Button from "react-bootstrap/Button";
 import ImageForm from "../NewImageForm/NewImageForm";
 import Image from "../Image/Image";
+import ImagesViewer from "../ImageViewer/ImageViewer";
 
 function Images(props) {
   const [album, setAlbum] = useState({
@@ -23,6 +24,8 @@ function Images(props) {
   const { openAlbum, goBackHome } = props;
   const [updateAlbum, setUpdateAlbum] = useState(false);
   const [updateValue, setUpdateValue] = useState({ name: "", url: "" });
+  const [viewImages, setViewImage] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   //   console.log(album);
 
@@ -35,14 +38,33 @@ function Images(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const showViewImage = (index) => {
+    setViewImage(true);
+    setCurrentIndex(index);
+    console.log(album.images.length - 1);
+  };
+
+  const disableViewImage = () => {
+    setViewImage(false);
+    setCurrentIndex(0);
+  };
+
+  const incrementIndex = () => {
+    if (currentIndex >= 0 && currentIndex < album.images.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+  const decrementIndex = () => {
+    if (currentIndex > 0 && currentIndex <= album.images.length - 1) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
   const handleSubmit = async (name, url) => {
     const image = {
       name,
       url,
     };
-
-    console.log(image);
-    console.log(updateValue);
 
     const albumRef = doc(db, "albums", album.id);
     if (!updateAlbum) {
@@ -83,46 +105,57 @@ function Images(props) {
   };
 
   return (
-    <div className={styles.imagesMainContainer}>
-      <div className={styles.backAndNewImageContainer}>
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/8022/8022662.png"
-          alt="back-button"
-          className={styles.btnBack}
-          onClick={goBackHome}
+    <>
+      <div className={styles.imagesMainContainer}>
+        {viewImages ? (
+          <ImagesViewer
+            disableViewImage={disableViewImage}
+            image={album.images[currentIndex]}
+            incrementIndex={incrementIndex}
+            decrementIndex={decrementIndex}
+          />
+        ) : null}
+        <div className={styles.backAndNewImageContainer}>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/8022/8022662.png"
+            alt="back-button"
+            className={styles.btnBack}
+            onClick={goBackHome}
+          />
+          <Button variant="outline-primary" onClick={handleShow}>
+            Add Image
+          </Button>
+        </div>
+
+        <ImageForm
+          handleClose={handleClose}
+          handleSubmit={handleSubmit}
+          show={show}
+          updateAlbum={updateAlbum}
+          updateValue={updateValue}
         />
-        <Button variant="outline-primary" onClick={handleShow}>
-          Add Image
-        </Button>
+
+        {album.images.length <= 0 ? (
+          <h1>No Images the album {album.name}</h1>
+        ) : (
+          <>
+            <h1>Lists of all images in {album.name}</h1>
+            <div className={styles.imagesContainer}>
+              {album.images.map((image, index) => (
+                <Image
+                  key={index}
+                  image={image}
+                  handleDelete={handleDelete}
+                  index={index}
+                  handelEdit={handelEdit}
+                  showViewImage={showViewImage}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
-
-      <ImageForm
-        handleClose={handleClose}
-        handleSubmit={handleSubmit}
-        show={show}
-        updateAlbum={updateAlbum}
-        updateValue={updateValue}
-      />
-
-      {album.images.length <= 0 ? (
-        <h1>No Images the album {album.name}</h1>
-      ) : (
-        <>
-          <h1>Lists of all images in {album.name}</h1>
-          <div className={styles.imagesContainer}>
-            {album.images.map((image, index) => (
-              <Image
-                key={index}
-                image={image}
-                handleDelete={handleDelete}
-                index={index}
-                handelEdit={handelEdit}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    </>
   );
 }
 

@@ -1,0 +1,71 @@
+.imagesContainer {
+  position: fixed;
+  /* border: 2px solid blue; */
+  z-index: 4;
+  width: 95vw;
+  height: 85vh;
+  top: 8vh;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  /* background-attachment: scroll; */
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnLeft {
+  position: absolute;
+  width: 80px;
+  top: 45%;
+  cursor: pointer;
+  left: 30px;
+  transition: all 0.5s ease-in-out;
+}
+
+.btnRight {
+  position: absolute;
+  width: 80px;
+  top: 45%;
+  right: 30px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.btnClose {
+  position: absolute;
+  width: 70px;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+}
+
+.btnRight:active {
+  transform: scale(1.3);
+}
+.btnLeft:active {
+  transform: scale(1.3);
+}
+.btnClose:active {
+  transform: scale(1.2);
+}
+.imageContainer {
+  /* border: 2px solid blue; */
+  width: 75%;
+  overflow: hidden;
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 80vh;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}

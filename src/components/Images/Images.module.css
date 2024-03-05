@@ -5,6 +5,7 @@
   padding: 40px;
   flex-direction: column;
   color: whitesmoke;
+  position: relative;
 }
 
 .backAndNewImageContainer {
