@@ -1,8 +1,12 @@
+// Importing using ES6 Module
 import styles from "./ImageViewer.module.css";
 
+// Defining functional based component
 function ImagesViewer(props) {
+  // Destructuring the props value
   const { disableViewImage, image, incrementIndex, decrementIndex } = props;
-  //   console.log(image);
+
+  // Returning the JSX
   return (
     <>
       <div className={styles.imagesContainer}>
@@ -31,4 +35,6 @@ function ImagesViewer(props) {
     </>
   );
 }
+
+// Exporting using default export
 export default ImagesViewer;

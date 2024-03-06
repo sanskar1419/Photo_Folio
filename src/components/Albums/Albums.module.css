@@ -1,3 +1,5 @@
+/* ...................................................................................................... */
+/* Albums Container */
 .albumsContainer {
   display: flex;
   align-items: center;
@@ -7,6 +9,8 @@
   color: whitesmoke;
 }
 
+/* ...................................................................................................... */
+/* Album Container */
 .albumContainer {
   height: auto;
   display: flex;

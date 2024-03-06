@@ -1,8 +1,11 @@
+// Importing required method,function,hooks etc.
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "./Navbar.module.css";
 
+// Creating functional component
 function NavigationBar() {
+  // Returning the JSX Content
   return (
     <Navbar
       expand="lg"
@@ -25,4 +28,5 @@ function NavigationBar() {
   );
 }
 
+// Use default export
 export default NavigationBar;

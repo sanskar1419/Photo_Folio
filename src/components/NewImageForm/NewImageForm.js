@@ -1,37 +1,37 @@
+// Importing using ES6 Module
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
+// Defining Functional based Component
 function ImageForm(props) {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const { handleSubmit, handleClose, show, updateAlbum, updateValue } = props;
 
-  // if (updateAlbum) {
-  //   nameRef.current.value = updateValue.name;
-  //   urlRef.current.value = updateValue.url;
-  // }
-
+  // Performing Side effect on mounting the component :  storing value of image inside the input box when click on edit
   useEffect(() => {
     if (updateValue) {
-      // storing value of image inside the input box when click on edit
       setName(updateValue.name);
       setUrl(updateValue.url);
     }
   }, [updateValue]);
 
+  // Function to clear Inputs values
   const clearInputs = () => {
     setName("");
     setUrl("");
   };
 
+  // Function to handel for form data on submit
   const handleFormSubmit = (e) => {
     e.preventDefault();
     handleSubmit(name, url);
     clearInputs();
   };
 
+  // Returning the JSX
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -77,4 +77,5 @@ function ImageForm(props) {
   );
 }
 
+// Exporting using Default Export
 export default ImageForm;

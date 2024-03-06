@@ -1,3 +1,5 @@
+/* ...................................................................................................... */
+/* All Images in Big size view container */
 .imagesContainer {
   position: fixed;
   /* border: 2px solid blue; */
@@ -6,19 +8,13 @@
   height: 85vh;
   top: 8vh;
   background-color: rgba(0, 0, 0, 0.6);
-
-  /* background-attachment: scroll; */
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: scroll; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* ...................................................................................................... */
+/* Left Button */
 .btnLeft {
   position: absolute;
   width: 80px;
@@ -28,6 +24,12 @@
   transition: all 0.5s ease-in-out;
 }
 
+.btnLeft:active {
+  transform: scale(1.3);
+}
+
+/* ...................................................................................................... */
+/* Right Button */
 .btnRight {
   position: absolute;
   width: 80px;
@@ -37,6 +39,12 @@
   transition: all 0.5s ease-in-out;
 }
 
+.btnRight:active {
+  transform: scale(1.3);
+}
+
+/* ...................................................................................................... */
+/* Close Button */
 .btnClose {
   position: absolute;
   width: 70px;
@@ -46,15 +54,12 @@
   transition: all 0.5s ease-in;
 }
 
-.btnRight:active {
-  transform: scale(1.3);
-}
-.btnLeft:active {
-  transform: scale(1.3);
-}
 .btnClose:active {
   transform: scale(1.2);
 }
+
+/* ...................................................................................................... */
+/* Images Container */
 .imageContainer {
   /* border: 2px solid blue; */
   width: 75%;

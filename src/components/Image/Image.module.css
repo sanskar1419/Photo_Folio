@@ -1,4 +1,5 @@
-/* album container */
+/* ...................................................................................................... */
+/* Image main Container */
 .cardContainer {
   width: 500px;
   height: 300px;
@@ -15,7 +16,8 @@
   position: relative;
 }
 
-/* album logo */
+/* ...................................................................................................... */
+/* Image Container */
 .cardImage {
   width: 100%;
   height: 85%;
@@ -26,6 +28,8 @@
   overflow: hidden;
 }
 
+/* ...................................................................................................... */
+/* Delete Button Container */
 .btnDelete {
   position: absolute;
   right: 5px;
@@ -39,6 +43,8 @@
   z-index: 2;
 }
 
+/* ...................................................................................................... */
+/* Edit Button Container */
 .btnEdit {
   position: absolute;
   top: -32px;
@@ -52,6 +58,8 @@
   z-index: 2;
 }
 
+/* ...................................................................................................... */
+/* Image Container */
 .cardImage img {
   width: 500px;
   height: 300px;
@@ -63,7 +71,8 @@
   z-index: -1;
 }
 
-/* album name */
+/* ...................................................................................................... */
+/* Image Name */
 .cardName {
   width: 100%;
   height: 15%;
@@ -71,7 +80,3 @@
   /* vertical-align: middle; */
   font-size: 1.5rem;
 }
-
-/* .cardContainer:hover {
-  background: linear-gradient(45deg, #2b0eab, #0c57ee);
-} */

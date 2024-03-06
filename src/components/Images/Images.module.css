@@ -1,3 +1,5 @@
+/* ...................................................................................................... */
+/* Main All Images Container */
 .imagesMainContainer {
   display: flex;
   align-items: center;
@@ -8,6 +10,8 @@
   position: relative;
 }
 
+/* ...................................................................................................... */
+/* Back Button, Search Button, Add Image and Search Container */
 .backAndNewImageContainer {
   /* border: 2px solid blue; */
   display: flex;
@@ -16,6 +20,8 @@
   width: 80%;
 }
 
+/* ...................................................................................................... */
+/* Back Button Image */
 .btnBack {
   width: 50px;
   height: 50px;
@@ -29,24 +35,8 @@
   transform: scale(1.3);
 }
 
-.imagesContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  /* flex-direction: column; */
-  color: whitesmoke;
-  flex-wrap: wrap;
-}
-
-.itmesContainer {
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* justify-content: space-between; */
-}
-
+/* ...................................................................................................... */
+/* Search Button Image */
 .searchBtn {
   width: 50px;
   height: 50px;
@@ -58,4 +48,26 @@
 
 .searchBtn:active {
   transform: scale(1.2);
+}
+
+/* ...................................................................................................... */
+/* All Images Container */
+.imagesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  /* flex-direction: column; */
+  color: whitesmoke;
+  flex-wrap: wrap;
+}
+
+/* ...................................................................................................... */
+/* Image Container */
+.itmesContainer {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
 }

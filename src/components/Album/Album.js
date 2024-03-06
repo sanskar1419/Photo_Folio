@@ -1,23 +1,24 @@
+// Importing css module type styling file
 import styles from "./Album.module.css";
 
+// Defining the functional based component
 function Album(props) {
+  // Destructuring the props
   const { album, settingAlbum } = props;
-  // console.log(album);
+
+  // Returning the JSX Content
   return (
     <>
-      {/* main container  */}
       <div
         className={styles.cardContainer}
         onClick={() => settingAlbum(album.id)}
       >
-        {/* album logo */}
         <div className={styles.cardImage}></div>
-
-        {/* album name*/}
         <div className={styles.cardName}>{album.name}</div>
       </div>
     </>
   );
 }
 
+// Exporting using default export
 export default Album;

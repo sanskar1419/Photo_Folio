@@ -1,3 +1,4 @@
+// Importing using ES6 module type
 import { useEffect, useState } from "react";
 import styles from "./Images.module.css";
 import { db } from "../../firebaseInit";
@@ -16,7 +17,9 @@ import ImageForm from "../NewImageForm/NewImageForm";
 import Image from "../Image/Image";
 import ImagesViewer from "../ImageViewer/ImageViewer";
 
+// Defining the functional based component
 function Images(props) {
+  // Defining States
   const [album, setAlbum] = useState({
     id: "",
     createdOn: "",
@@ -32,49 +35,57 @@ function Images(props) {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
 
-  //   console.log(album);
-
+  // Performing Side effect for getting the particular album based on albumId
   useEffect(() => {
     onSnapshot(doc(db, "albums", openAlbum.albumId), (doc) => {
       setAlbum({ id: doc.id, ...doc.data() });
     });
   }, []);
 
+  // Function to toggle the search bar
   const toggleSearch = () => {
     setShowSearch(!showSearch);
   };
 
+  // Function to Close the new image form
   const handleClose = () => setShow(false);
+
+  // Function to show the new image form
   const handleShow = () => setShow(true);
 
+  // Function to show all image
   const showViewImage = (index) => {
     setViewImage(true);
     setCurrentIndex(index);
-    console.log(album.images.length - 1);
+    // console.log(album.images.length - 1);
   };
 
+  // Function to disable the viewing of image
   const disableViewImage = () => {
     setViewImage(false);
     setCurrentIndex(0);
   };
 
+  // Function to move to next image
   const incrementIndex = () => {
     if (currentIndex >= 0 && currentIndex < album.images.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
+
+  // Function to move to previous image
   const decrementIndex = () => {
     if (currentIndex > 0 && currentIndex <= album.images.length - 1) {
       setCurrentIndex(currentIndex - 1);
     }
   };
 
+  // Function to handle adding new image and updating the existing image
   const handleSubmit = async (name, url) => {
     const image = {
       name,
       url,
     };
-
     const albumRef = doc(db, "albums", album.id);
     if (!updateAlbum) {
       await updateDoc(albumRef, {
@@ -94,6 +105,7 @@ function Images(props) {
     handleClose();
   };
 
+  // Function to delete a particular Image
   const handleDelete = async (image, index) => {
     const albumRef = doc(db, "albums", album.id);
     await updateDoc(albumRef, {
@@ -102,20 +114,21 @@ function Images(props) {
     toast.success("Image Deleted Successfully");
   };
 
+  // Function to clear the update value
   const clearUpdate = () => {
     setUpdateAlbum(false);
     setUpdateValue({ name: "", url: "" });
   };
 
+  // Function to show the form on clicking on edit
   const handelEdit = (image, index) => {
-    // console.log("Edit is clicked");
+    console.log(image);
     setUpdateAlbum(true);
     setUpdateValue({ name: image.name, url: image.url });
-    // console.log(updateValue);
     handleShow();
-    // console.log(nameRef.current);
   };
 
+  // Returning the JSX Content
   return (
     <>
       <div className={styles.imagesMainContainer}>
@@ -202,4 +215,5 @@ function Images(props) {
   );
 }
 
+// Exporting using default export
 export default Images;

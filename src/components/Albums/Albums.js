@@ -1,3 +1,4 @@
+// Importing required method,function,hooks etc.
 import styles from "./Albums.module.css";
 import Button from "react-bootstrap/Button";
 import useFetch from "../../hooks/useFetch";
@@ -6,7 +7,9 @@ import NewAlbumForm from "../NewAlbumForm/NewAlbumForm";
 import Images from "../Images/Images";
 import Spinner from "react-spinner-material";
 
+// Creating functional component
 function Albums() {
+  // Destructuring the useFetch Hooks values
   const {
     loading,
     albums,
@@ -17,16 +20,19 @@ function Albums() {
     settingAlbum,
     goBackHome,
   } = useFetch();
-  // console.log(openAlbum);
+
+  // Returning the jsx content
   return (
     <>
       {!openAlbum.open ? (
         <div className={styles.albumsContainer}>
           <h2>Your Albums</h2>
+          {/* Dynamically Setting the class of Button */}
           <Button
             variant={showAlbumForm ? "danger" : "primary"}
             onClick={toggleAlbumForm}
           >
+            {/* Showing Album form on when the showAlbumForm is true */}
             {showAlbumForm ? "Cancel Album Creation" : "Add New Album"}
           </Button>
           {showAlbumForm ? (
@@ -51,4 +57,5 @@ function Albums() {
   );
 }
 
+// Exporting using default export
 export default Albums;
