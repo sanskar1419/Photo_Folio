@@ -1,13 +1,17 @@
-# Hospital API
+# Photo_Folio
 
 PhotoFolio is an online photo album react app that allows users to upload, organize, and share their digital photos.
 
-## Render Deployment Link
+## Render and Vercel Deployment Link
 
 To view the web application go to this link
 
 ```bash
   https://photo-folio-pxle.onrender.com
+```
+
+```bash
+  https://photo-folio-q84mkd3gw-sanskar-guptas-projects.vercel.app
 ```
 
 ## Tech Stack
