@@ -1,6 +1,53 @@
-# Getting Started with Create React App
+# Hospital API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PhotoFolio is an online photo album react app that allows users to upload, organize, and share their digital photos.
+
+## Render Deployment Link
+
+To view the web application go to this link
+
+```bash
+  https://photo-folio-pxle.onrender.com
+```
+
+## Tech Stack
+
+**Server:** Cloud Firestore
+**Client:** ReactJs, CSS
+
+## Installation
+
+To install the Habit_Tracker, follow these steps:
+
+Clone this repository using the following command:
+
+```
+$ git clone https://github.com/sanskar1419/Photo_Folio.git
+```
+
+Install the required dependencies using the following command:
+
+```
+$ npm install
+```
+
+or
+
+```
+$ npm i
+```
+
+Start the application using the following command:
+
+```
+$ npm start
+```
+
+Open the application in your web browser by visiting the following URL:
+
+```
+$ http://localhost:3000
+```
 
 ## Available Scripts
 
@@ -39,32 +86,28 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Home(Albums Page)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Home](https://github.com/sanskar1419/Project_Screenshot/blob/master/Photo_Folio/Screenshot%202024-03-06%20115904.png?raw=true)
 
-### Code Splitting
+### Album Page with new album form
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Album Page with new album form](https://github.com/sanskar1419/Project_Screenshot/blob/master/Photo_Folio/Screenshot%202024-03-06%20115914.png?raw=true)
 
-### Analyzing the Bundle Size
+### Images Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Images Page](https://github.com/sanskar1419/Project_Screenshot/blob/master/Photo_Folio/Screenshot%202024-03-06%20115928.png?raw=true)
 
-### Making a Progressive Web App
+### New Image adding form
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![New Image adding form](https://github.com/sanskar1419/Project_Screenshot/blob/master/Photo_Folio/Screenshot%202024-03-06%20115938.png?raw=true)
 
-### Advanced Configuration
+### Images Page with Search Bar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Images Page with Search Bar](https://github.com/sanskar1419/Project_Screenshot/blob/master/Photo_Folio/Screenshot%202024-03-06%20115950.png?raw=true)
 
-### Deployment
+### Broad View of Images
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Images Page](https://github.com/sanskar1419/Project_Screenshot/blob/master/Photo_Folio/Screenshot%202024-03-06%20120021.png?raw=true)
